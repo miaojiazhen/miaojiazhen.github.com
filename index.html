@@ -1,0 +1,102 @@
+<h1>How to make bash</h1>
+
+
+<pre><code>vim markdown.sh
+    #!/bin/bash
+    markdown file.md &gt; file.html
+    firefox file.html &amp;
+chmod +x file.sh
+mv file.sh /bin      //became system command
+</code></pre>
+
+<h1>command</h1>
+
+<h2>%s                substitute</h2>
+
+<pre><code>%s /****/substitute content/g
+%s /****/substitute content/gc    //zhugequeren 
+%s /\/home\/hushengjie/miao/g     //example
+</code></pre>
+
+<h2>which</h2>
+
+<pre><code>which file.sh        //look over file path
+--'xp'--to exchange two char
+--'rc'--change the char in front of the cursor to 'c'
+</code></pre>
+
+<h2>firefox</h2>
+
+<pre><code>'/' to start search
+__ctrl+g__  find next
+__ctrl+c+l__   change URL
+__ctrl+r__     refresh
+__ctrl+k__     to google
+</code></pre>
+
+<h1>creat a tar ball</h1>
+
+<pre><code>tar zcvf toy.tgz toy
+tar zxvf toy.tgz
+</code></pre>
+
+<h1>stop a process by force</h1>
+
+<pre><code>ps aux|grep firefox
+kill -9 [the process number of firefox]
+or we can kill by name
+killall firefox
+</code></pre>
+
+<h1>about bash</h1>
+
+<pre><code>#!/bin/bash
+for file in a b c d;
+do
+    echo $file            //bash is very sensitive to space
+done
+</code></pre>
+
+<h2>"a.c"->"a"</h2>
+
+<pre><code>#!/bin/bash
+WOKDIR=$1
+CD $WOKDIR
+for file in `ls`;
+do
+    f=`echo $file|awk -F'.' '{ print $1 }'`
+    mv $file $f
+done;
+</code></pre>
+
+<h2>How to usage 'if' in bash</h2>
+
+<pre><code>test -f hello.h           
+echo $?                     //if have a hello.h ,put out 0
+
+#!/bin/bash
+if [ -f a ]
+then
+    mv a a.c
+fi
+</code></pre>
+
+<h2>example</h2>
+
+<pre><code>#!/bin/bash
+echo -n "want to say hello?(Y/n):"
+read AAA
+if [ ${AAA:-y} = "y" ];                  //note space
+then
+    echo hello
+fi
+
+#!/bin/bash
+WOKDIR=$1
+cd $WOKDIR
+for file in `ls`
+do
+    f=`echo $file|awk -F'.' ' { print $1 }'`
+    echo $file $f
+done
+</code></pre>
